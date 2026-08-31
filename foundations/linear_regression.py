@@ -4,17 +4,14 @@ from numpy.typing import NDArray
 class Solution:
 
     def get_model_prediction(self, X: NDArray[np.float64], weights: NDArray[np.float64]) -> NDArray[np.float64]:
-        # Compute Y_hat = X @ W (matrix multiplication)
-        # X is (n, 3), weights is (3,) -> result is (n,) predictions
-        # Return np.round(result, 5)
-        prediction = np.matmul(X, weights)
-        return np.round(prediction, 5)
+        # X is (n, m), weights is (m,) -> return (n,) predictions
+        # Round to 5 decimal places
+        Y = np.matmul(X, weights)
+        return np.round(Y, 5)
         
 
     def get_error(self, model_prediction: NDArray[np.float64], ground_truth: NDArray[np.float64]) -> float:
-        # Compute MSE = mean((predictions - truth)^2)
-        # Use np.mean() and np.square()
-        # Return round(result, 5)
-        MSE = np.mean(np.square(model_prediction - ground_truth))
-        return round(MSE, 5)
+        # Compute mean squared error between predictions and ground truth
+        # Round to 5 decimal places
+        return round(np.mean(np.square(model_prediction - ground_truth)), 5)
         
