@@ -14,10 +14,13 @@ class Solution:
         # Loss: L = 0.5 * (y_hat - y_true)^2
         # Return: (dL_dw rounded to 5 decimals, dL_db rounded to 5 decimals)
         z = np.dot(x, w) + b
-        y_hat = (1 / (1 + np.exp(-z)))
+        y_hat = 1.0 / (1.0 + np.exp(-z))
+
         error = y_hat - y_true
         sigmoid_deriv = y_hat * (1.0 - y_hat)
         delta = error * sigmoid_deriv
+
         dL_dw = np.round(delta * x, 5)
         dL_db = round(float(delta), 5)
         return (dL_dw, dL_db)
+        
